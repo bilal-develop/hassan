@@ -1,0 +1,1361 @@
+/* Basic Reset & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Example font, change if needed */
+  line-height: 1.6;
+  background-color: #0a192f; /* Fallback background */
+  color: #ccd6f6; /* Light text color */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Hero Section Base Style */
+.hero-section {
+  min-height: 100vh; /* Full height */
+  background: linear-gradient(135deg, #0a192f 0%, #142a4a 100%); /* Gradient like image */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent overflow from decorative elements */
+  position: relative; /* Needed for absolute positioning of decorations */
+}
+
+/* --- Custom Variables (aap yeh rang badal sakte hain) --- */
+:root {
+  --navbar-bg-color: #0a101e; /* Dark blue background from image */
+  --navbar-link-color: #ffffff; /* White link text */
+  --navbar-link-hover-color: #e0e0e0; /* Lighter white on hover */
+  --navbar-link-active-color: #ffffff; /* Active link color */
+  --navbar-link-active-border: #ffffff; /* Underline color for active link */
+  --logo-block-color: #0d6efd; /* Blue color for logo block (Bootstrap primary blue) */
+  --cta-button-bg: #0d6efd; /* Blue color for CTA button */
+  --cta-button-text: #ffffff; /* White text for CTA button */
+  --cta-button-hover-bg: #0b5ed7; /* Darker blue on hover */
+}
+
+/* --- Navbar Base Styling --- */
+.custom-navbar-bg {
+  background-color: var(--navbar-bg-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional subtle bottom border */
+}
+
+/* --- Logo Styling --- */
+.navbar-brand.logo {
+  color: var(--navbar-link-color);
+  font-size: 1.5rem; /* Adjust size as needed */
+  letter-spacing: 1px;
+}
+
+.logo-block {
+  display: inline-block;
+  width: 25px; /* Adjust size */
+  height: 30px; /* Adjust size */
+  background-color: var(--logo-block-color);
+  border-radius: 4px; /* Slight rounding */
+}
+
+/* --- Navbar Link Styling --- */
+.navbar-nav .nav-link {
+  color: var(--navbar-link-color);
+  font-weight: 600; /* Semi-bold */
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease-in-out;
+  position: relative; /* Needed for active underline */
+  padding-top: 0.8rem; /* Adjust vertical padding */
+  padding-bottom: 0.8rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--navbar-link-hover-color);
+}
+
+/* Active link style (underline) */
+.navbar-nav .nav-link.active {
+  color: var(--navbar-link-active-color);
+  font-weight: 700; /* Make active link bolder */
+}
+
+/* Underline for active link on large screens */
+@media (min-width: 992px) { /* lg breakpoint */
+  .navbar-nav .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 8px; /* Adjust position of underline */
+      left: 1rem; /* Corresponds to px-lg-3 padding */
+      right: 1rem;/* Corresponds to px-lg-3 padding */
+      height: 2px;
+      background-color: var(--navbar-link-active-border);
+  }
+   /* Center links */
+   .navbar-collapse {
+      justify-content: space-between;
+   }
+}
+
+
+/* --- CTA Button Styling --- */
+.btn-cta {
+  background-color: var(--cta-button-bg);
+  color: var(--cta-button-text);
+  font-weight: 700; /* Bold */
+  padding: 0.6rem 1.5rem; /* Adjust padding */
+  border: none;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.btn-cta:hover {
+  background-color: var(--cta-button-hover-bg);
+  color: var(--cta-button-text);
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* --- Toggler Styling (Optional: Customize Hamburger) --- */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- Responsive Adjustments for collapsed menu --- */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+      text-align: center; /* Center links when collapsed */
+      margin-top: 1rem; /* Add some space above links */
+  }
+  .navbar-nav .nav-link {
+      padding: 0.8rem 1rem; /* Adjust padding for collapsed view */
+  }
+  .navbar-nav .nav-link.active::after {
+     display: none; /* Hide underline in collapsed view */
+  }
+  .btn-cta {
+     display: block; /* Make button full width */
+     width: fit-content; /* Or adjust as needed */
+     margin: 1rem auto 0.5rem; /* Center button and add margin */
+  }
+}
+/* animation section  */
+.scrolling-text-wrapper {
+  width: 100%;
+  height: 70px;
+  overflow: hidden;
+  background: #0a192f; /* Light background */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Hero Content Area */
+.hero-content {
+  flex-grow: 1; /* Takes remaining vertical space */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem; /* Add padding */
+  gap: 2rem; /* Space between text and image */
+  position: relative; /* Needed for absolute positioning of decorations */
+  z-index: 1; /* Below navbar */
+}
+
+/* Hero Text Styling */
+.hero-text {
+  flex: 1; /* Take up half the space */
+  max-width: 550px; /* Limit text width */
+}
+
+.sub-title {
+  display: inline-block; /* To contain background */
+  background-color: rgba(0, 123, 255, 0.15); /* Subtle background */
+  color: #64ffda; /* Highlight color */
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.hero-text h2 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+  color: #8892b0; /* Greyish color */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.hero-text h2.highlight {
+  color: #007bff; /* Blue highlight color */
+}
+
+.description {
+  color: #a8b2d1; /* Slightly lighter grey for paragraph */
+  font-size: 1rem;
+  max-width: 500px; /* Limit paragraph width */
+}
+
+/* Hero Image Container */
+.hero-image-container {
+  flex: 1; /* Take up other half */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* For positioning decorative elements */
+  min-width: 300px; /* Ensure image has some space */
+}
+
+.hero-image-container img {
+  max-width: 400px; /* Control image size */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px; /* Slightly rounded corners */
+  z-index: 2; /* Image above decorations */
+  position: relative;
+}
+
+/* Decorative Elements (Simple Example) */
+.deco-sphere {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(40, 60, 90, 0.7); /* Dark sphere color */
+  border-radius: 50%;
+  z-index: 1; /* Behind image */
+}
+
+.sphere1 {
+  top: 10%;
+  left: 5%;
+}
+
+.sphere2 {
+  bottom: 10%;
+  right: 5%;
+}
+
+.deco-lines {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  /* Simple example using repeating gradient for lines */
+  background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(136, 146, 176, 0.1) 10px, /* Line color */
+      rgba(136, 146, 176, 0.1) 12px /* Line thickness */
+  );
+  opacity: 0.5;
+  z-index: 0; /* Furthest back */
+  clip-path: ellipse(80% 100% at 100% 100%); /* Shape it */
+}
+
+
+/* --- Responsiveness --- */
+
+/* Tablets and smaller desktops */
+@media (max-width: 992px) {
+  .nav-container, .hero-content {
+      padding: 0 1.5rem; /* Reduce padding */
+  }
+
+  .nav-menu {
+      gap: 1.5rem; /* Reduce gap */
+  }
+
+  .hero-text h1, .hero-text h2 {
+     font-size: 3.5rem; 
+  }
+
+  .hero-image-container img {
+      max-width: 350px;
+  }
+   .deco-sphere {
+      width: 50px;
+      height: 50px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 767px) {
+  .nav-menu {
+      display: none; /* Hide menu by default */
+      position: absolute;
+      top: 65px; /* Position below navbar */
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background-color: #0a192f; /* Mobile menu background */
+      padding: 1.5rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(100, 255, 218, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .nav-menu.active {
+      display: flex; /* Show when active */
+  }
+
+  .nav-menu li {
+      margin-bottom: 1rem;
+  }
+
+ 
+  
+
+  .hamburger-menu {
+      display: block; /* Show hamburger */
+  }
+
+  /* Hamburger animation */
+  .hamburger-menu.active div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  .hamburger-menu.active div:nth-child(2) {
+      opacity: 0;
+  }
+  .hamburger-menu.active div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+
+  .hero-content {
+      flex-direction: column; /* Stack text and image */
+      text-align: center; /* Center text */
+      padding: 2rem 1rem; /* Adjust padding */
+  }
+
+  .hero-text {
+      max-width: 100%; /* Allow text full width */
+      order: 2; /* Text below image */
+      margin-top: 2rem;
+  }
+
+   .description {
+       margin-left: auto;
+       margin-right: auto;
+   }
+
+  .hero-image-container {
+      order: 1; /* Image above text */
+      width: 70%; /* Control image size */
+      margin: 0 auto; /* Center image container */
+      min-width: unset; /* Remove min-width */
+  }
+
+  .hero-image-container img {
+      max-width: 280px; /* Smaller image on mobile */
+  }
+
+   /* Hide or adjust decorations on mobile if needed */
+   .deco-lines, .deco-sphere {
+       display: none; /* Example: hide decorations on small screens */
+   }
+}
+/* --- Custom Color Variables --- */
+:root {
+  --primary-color: #0d6efd;   /* Bootstrap Blue - Aap isko badal sakte hain */
+  --highlight-color: #17a2b8; /* Teal/Cyan color thora different shade */
+  --dark-bg: #0a192f;         /* Dark blue background */
+  --card-bg: #112240;        /* Slightly lighter dark blue for cards/stats */
+  --light-text: #ccd6f6;      /* Light text color */
+  --lightest-text: #e6f1ff;   /* Lighter text for headings */
+  --border-color: rgba(23, 162, 184, 0.3); /* Border color for stats */
+}
+
+/* --- Base Styling --- */
+body {
+  background-color: var(--dark-bg); /* Fallback background */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Modern font stack */
+}
+
+.about-section {
+  background-color: var(--dark-bg);
+  position: relative; /* Needed for absolute positioning of decorative elements */
+  overflow: hidden; /* Hide parts of decorative elements outside the section */
+  z-index: 1; /* Ensure content is above decorative elements */
+}
+
+/* --- Image Styling --- */
+.image-container {
+  /* Optional: Add a subtle border or background if needed */
+  /* background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)); */
+  /* padding: 8px; */
+   border-radius: 25px; /* Match image rounding */
+}
+
+.rounded-custom {
+  border-radius: 20px !important; /* Use !important if Bootstrap overrides */
+  max-width: 100%; /* Ensure image is responsive */
+  height: auto;
+  display: block; /* Prevents extra space below image */
+}
+
+/* --- Text & Content Styling --- */
+.about-content {
+  position: relative; /* For stacking context if needed */
+  z-index: 2;
+}
+
+.about-badge {
+  background-color: var(--card-bg);
+  color: var(--highlight-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.highlight {
+  font-size: large;
+}
+
+.about-section h1 {
+  color: var(--lightest-text);
+  font-weight: 700; /* Make heading bolder */
+}
+
+.highlight-text {
+  color: var(--highlight-color);
+  font-size: large;
+}
+
+.about-section p.lead {
+  color: var(--light-text);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* --- Stats Section Styling --- */
+.stat-box {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  color: var(--lightest-text);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Make boxes equal height if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.stat-box h3 {
+  color: var(--highlight-color); /* Highlight color for numbers */
+  margin-bottom: 0.15rem;
+  font-size: 2.2rem; /* Adjust size if needed */
+}
+
+.stat-box p {
+  color: var(--light-text);
+  font-size: 0.8rem; /* Slightly smaller text */
+  letter-spacing: 0.5px;
+}
+
+/* --- Button Styling --- */
+.btn-get-in-touch {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1.75rem; /* Adjust padding */
+  font-weight: 600;
+  border-radius: 8px; /* Match stats box radius */
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.btn-get-in-touch:hover,
+.btn-get-in-touch:focus {
+  background-color: #0b5ed7; /* Darker shade on hover/focus */
+  border-color: #0a58ca;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Decorative Circles (Simpler Approach using Pseudo-elements) --- */
+.about-section::before,
+.about-section::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08; /* Very subtle */
+  z-index: 0; /* Behind content */
+  background: radial-gradient(circle, var(--highlight-color) 0%, transparent 70%);
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Top Right Circle */
+.about-section::before {
+  width: 280px;
+  height: 280px;
+  top: -100px;
+  right: -100px;
+  /* Adjust size and position as needed */
+}
+
+/* Bottom Left Circle */
+.about-section::after {
+  width: 350px;
+  height: 350px;
+  bottom: -150px;
+  left: -120px;
+  /* Adjust size and position as needed */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 991.98px) { /* Below Large (lg) screens */
+  .about-section {
+      text-align: center; /* Center align text content */
+  }
+   .image-container {
+       margin-bottom: 2rem; /* Add space below image when stacked */
+   }
+  .about-content {
+      text-align: center; /* Ensure content is centered */
+  }
+  .stats-row {
+      justify-content: center; /* Center stat boxes */
+  }
+   .btn-get-in-touch {
+      margin-left: auto;
+      margin-right: auto; /* Center button */
+      display: inline-block; /* Needed for margin auto */
+   }
+   .about-section::before { /* Adjust decorative element position */
+      top: -120px;
+      right: -120px;
+   }
+    .about-section::after {
+      bottom: -180px;
+      left: -150px;
+   }
+}
+
+@media (max-width: 767.98px) { /* Below Medium (md) screens */
+  .about-section h1 {
+      font-size: 2.4rem; /* Slightly smaller heading */
+  }
+   .stat-box h3 {
+      font-size: 2rem;
+   }
+   .about-section p.lead {
+      font-size: 1rem;
+   }
+    .image-container img {
+      max-width: 75%; /* Adjust image size if needed */
+   }
+}
+
+@media (max-width: 575.98px) { /* Below Small (sm) screens */
+   .about-section h1 {
+      font-size: 2rem; /* Even smaller heading */
+  }
+  /* Stat boxes will stack automatically due to col-sm-4 */
+  .stat-box {
+      margin-bottom: 1rem; /* Add space between stacked stat boxes */
+  }
+   .stats-row .col-sm-4:last-child .stat-box {
+       margin-bottom: 0; /* Remove margin from last box */
+   }
+}
+/* --- Custom Variables --- */
+:root {
+  --section-bg-color: #0a192f; /* Dark blue background */
+  --badge-bg: #112e5a;         /* Slightly lighter blue for badge */
+  --badge-text: #64ffda;       /* Teal/Cyan text for badge (adjust if needed) */
+  --heading-color: #e6f1ff;    /* Lightest text for heading */
+  --card-bg: #ffffff;         /* White background for cards */
+  --card-border-radius: 15px; /* Rounded corners for card */
+  --card-text-color: #333;    /* Dark text inside card */
+  --card-muted-text: #6c757d; /* Muted text (Bootstrap default) */
+  --arrow-btn-bg: #0d6efd;    /* Blue background for arrow button */
+  --arrow-btn-icon: #ffffff;  /* White arrow icon */
+  --indicator-inactive: rgba(255, 255, 255, 0.3); /* Dim white for inactive dots */
+  --indicator-active: #0d6efd; /* Blue for active dot */
+}
+
+/* --- Section Styling --- */
+.recent-projects-section {
+  background-color: var(--section-bg-color);
+  overflow: hidden; /* Prevent potential horizontal scrollbar from card shadows */
+}
+
+/* --- Header Styling --- */
+.badge-custom {
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 0.4em 0.9em;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  color: var(--heading-color);
+}
+
+/* --- Project Card Styling --- */
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  overflow: hidden; /* Keep image corners rounded */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* Ensure cards in the same row have equal height */
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.project-card .card-img-top {
+  width: 100%;
+  height: 200px; /* Fixed height for images, adjust as needed */
+  object-fit: cover; /* Cover the area, might crop */
+  border-bottom: 1px solid #eee; /* Subtle separator */
+}
+
+.project-card .card-body {
+  padding: 1.25rem; /* Standard padding */
+  flex-grow: 1; /* Allow body to grow to fill space */
+}
+
+.project-card .card-title {
+  color: var(--card-text-color);
+  font-weight: 600;
+}
+
+.project-card .card-text {
+  color: var(--card-muted-text);
+}
+
+/* --- Arrow Button Styling --- */
+.btn-arrow {
+  background-color: var(--arrow-btn-bg);
+  color: var(--arrow-btn-icon);
+  width: 40px;  /* Fixed size */
+  height: 40px; /* Fixed size */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Remove default padding */
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-arrow:hover {
+  background-color: #0b5ed7; /* Darker blue on hover */
+  color: var(--arrow-btn-icon);
+}
+
+/* --- Carousel Indicator Styling --- */
+.project-indicators {
+  position: static; /* Override Bootstrap's absolute positioning */
+  margin-top: 2.5rem; /* Space between cards and dots */
+  justify-content: center; /* Center the dots */
+}
+
+.project-indicators button {
+  width: 10px;  /* Dot size */
+  height: 10px; /* Dot size */
+  border-radius: 50%; /* Make them round */
+  background-color: var(--indicator-inactive);
+  border: none;
+  opacity: 0.7;
+  margin: 0 5px; /* Spacing between dots */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.project-indicators button.active {
+  background-color: var(--indicator-active);
+  opacity: 1;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 767.98px) {
+  .project-card .card-img-top {
+      height: 180px; /* Slightly smaller image height on mobile */
+  }
+   .section-header h2 {
+      font-size: 1.8rem; /* Adjust heading size */
+  }
+}
+
+/* Optional: If using Prev/Next controls, style them */
+
+.carousel-control-prev-icon
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  padding: 1rem;
+  background-size: 50%;
+}
+
+
+
+/* Services Section Styling */
+.services-section {
+  background-color: #0a192f; /* Dark blue background */
+  padding: 60px 0;
+  color: #ccd6f6; /* Light text color */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header Tag Styling */
+.services-tag {
+  display: inline-block;
+  background-color: #1e3a5f; /* Slightly lighter blue */
+  color: #64ffda;  /* Accent color (adjust if needed) */
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Section Title Styling */
+.section-title {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: #ffffff; /* White color for main title part */
+  margin-bottom: 40px;
+  text-align: left; /* Or center if you prefer */
+}
+
+.section-title .highlight {
+  color: #0d6efd; /* Bright blue for highlighted word */
+}
+
+/* Services Grid Layout */
+.services-grid {
+  display: grid;
+  /* Grid with 4 columns on large screens */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px; /* Space between cards */
+}
+
+/* Service Card Styling */
+.service-card {
+  position: relative; /* Needed for overlay positioning */
+  border-radius: 8px;
+  overflow: hidden; /* Ensures content respects border-radius */
+  min-height: 350px; /* Minimum height for cards */
+  background-size: cover;
+  background-position: center center;
+  display: flex; /* Use flex to align content */
+  flex-direction: column;
+  justify-content: flex-end; /* Push content to the bottom */
+  color: #ffffff; /* Default text color */
+}
+
+/* --- IMPORTANT: Add Background Images Here --- */
+.card-web-design {
+  background-image: url(service-01.jpg); /* Replace with your image */
+}
+.card-web-dev {
+  background-image: url(service-02.jpg); /* Replace with your image */
+}
+.card-seo {
+  background-image: url(service-03.jpg); /* Replace with your image */
+}
+.card-graphic {
+  background-image: url(service-04.jpg); /* Replace with your image */
+}
+/* --- End Background Images --- */
+
+
+/* Card Content Overlay & Styling */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(8, 12, 24, 0.55) 40%, rgba(5, 13, 23, 0.0) 100%); /* Dark overlay, stronger at bottom */
+  z-index: 1; /* Below the text content */
+}
+
+.card-content {
+  position: relative; /* To sit above the overlay */
+  z-index: 2;
+  padding: 25px;
+}
+
+/* Icon Container Styling */
+.icon-container {
+  width: 55px;
+  height: 55px;
+  background-color: #0d6efd; /* Bright blue */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Space below icon */
+}
+
+.icon-container i {
+  color: #ffffff; /* White icon */
+  font-size: 1.5rem; /* Icon size */
+}
+
+/* Card Text Styling */
+.card-content h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff; /* White title */
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #a8b2d1; /* Lighter text color */
+}
+
+/* --- Responsive Design --- */
+
+/* Tablets and below (e.g., < 992px) */
+@media (max-width: 991.98px) {
+  .services-grid {
+      /* Change to 2 columns */
+      grid-template-columns: repeat(2, 1fr);
+  }
+   .section-title {
+      font-size: 2rem;
+  }
+}
+
+/* Mobile devices (e.g., < 768px) */
+@media (max-width: 767.98px) {
+  .services-grid {
+      /* Stack to 1 column */
+      grid-template-columns: 1fr;
+  }
+   .section-title {
+      font-size: 1.8rem;
+      text-align: center; /* Center title on mobile */
+  }
+  .services-tag {
+     display: block; /* Make tag full width */
+     text-align: center; /* Center tag text */
+     margin-left: auto;
+     margin-right: auto;
+  }
+  .container {
+      padding: 0 20px; /* More padding on smaller screens */
+  }
+  .service-card {
+      min-height: 300px; /* Slightly smaller height */
+  }
+}
+
+/* Experience Section Styling */
+.experience-section {
+  background-color: #0a192f; /* Dark blue background */
+  padding: 60px 0;
+  color: #ccd6f6; /* Default light text color */
+}
+
+.container {
+  max-width: 960px; /* Adjust max-width as needed */
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Header Tag Styling */
+.experience-tag {
+  display: inline-block;
+  background-color: #1e3a5f; /* Slightly lighter blue */
+  color: #ffffff; /* White text for tag */
+  padding: 5px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Section Title Styling */
+.section-title {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: #ffffff; /* White color for main title part */
+  margin-bottom: 40px;
+  text-align: left; /* Or center if you prefer */
+}
+
+.section-title .highlight {
+  color: #0d6efd; /* Bright blue for highlighted word */
+}
+
+/* Experience Card Styling */
+.experience-card {
+  background-color: #112240; /* Slightly lighter dark blue */
+  border-radius: 8px;
+  padding: 30px; /* Padding inside the card */
+  display: flex; /* Use flexbox for column layout */
+  gap: 30px; /* Space between the two columns */
+  margin-bottom: 30px; /* Space below each card if multiple */
+}
+
+/* Left Column: Job Details */
+.job-details {
+  background-color: #0d6efd; /* Bright blue */
+  color: #ffffff; /* White text */
+  padding: 25px;
+  border-radius: 8px;
+  flex: 0 0 250px; /* Fixed width for the left column (adjust as needed) */
+  display: flex;
+  flex-direction: column;
+}
+
+.job-details h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.job-details .company-location,
+.job-details .date-range {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  opacity: 0.9; /* Slightly less prominent */
+  text-transform: uppercase;
+}
+
+.job-details .date-range {
+  margin-bottom: 20px; /* More space before the button */
+}
+
+.employment-type {
+  display: inline-block; /* Allow setting width/padding */
+  background-color: #ffffff; /* White background */
+  color: #0d6efd; /* Blue text */
+  padding: 6px 15px;
+  border-radius: 20px; /* Pill shape */
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  align-self: flex-start; /* Prevent stretching full width */
+  margin-top: auto; /* Pushes button towards the bottom if space allows */
+}
+
+
+/* Right Column: Company Info */
+.company-info {
+  flex: 1; /* Takes remaining available space */
+}
+
+.company-info h4 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffffff; /* White heading */
+  margin-bottom: 15px;
+}
+
+.company-info p {
+  font-size: 0.95rem;
+  color: #a8b2d1; /* Lighter text color */
+  line-height: 1.7;
+}
+
+
+/* --- Responsive Design --- */
+
+/* Tablets and below (e.g., < 768px) */
+@media (max-width: 767.98px) {
+  .section-title {
+      font-size: 2rem;
+      text-align: center; /* Center title on smaller screens */
+  }
+  .experience-tag {
+      display: block; /* Make tag full width */
+      text-align: center; /* Center tag text */
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .experience-card {
+      flex-direction: column; /* Stack columns vertically */
+      padding: 20px; /* Reduce padding slightly */
+      gap: 20px; /* Reduce gap between stacked items */
+  }
+
+  .job-details {
+      flex: 0 0 auto; /* Reset flex-basis, let content determine height */
+      width: 100%; /* Take full width */
+      padding: 20px;
+  }
+
+  .employment-type {
+      margin-top: 15px; /* Ensure space above button */
+  }
+
+  .company-info h4 {
+      font-size: 1.2rem;
+  }
+  .company-info p {
+      font-size: 0.9rem;
+  }
+}
+
+.contact-section {
+  background-color: #0a192f; /* Dark blue background */
+  color: #ccd6f6; /* Light text color */
+  padding: 60px 0;
+  position: relative; /* Needed for potential pseudo-elements if any */
+  overflow: hidden; /* Prevent overflow issues */
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Adjust ratio as needed */
+  gap: 40px;
+  align-items: start; /* Align items to the top */
+}
+
+/* Left Column: Info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between image container and details */
+}
+
+.image-container {
+  background-color: #112240; /* Slightly lighter dark blue */
+  padding: 15px;
+  border-radius: 15px; /* Rounded corners */
+  display: inline-block; /* Fit content */
+  max-width: 400px; /* Limit image container width */
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Slightly rounded image corners */
+}
+
+.info-details {
+  padding-left: 20px; /* Indent info below image */
+}
+
+.info-block {
+  margin-bottom: 25px;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.75rem; /* Smaller label text */
+  color: #8892b0; /* Greyish text color */
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff; /* White text */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-value:hover {
+  color: #00aaff; /* Highlight color on hover */
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon.facebook { background-color: #3b5998; }
+.social-icon.dribbble { background-color: #ea4c89; } /* Pink color */
+.social-icon.linkedin { background-color: #0077b5; }
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* Right Column: Form */
+.contact-form-area {
+  padding-top: 20px; /* Align top content roughly */
+}
+
+.contact-form-area h2 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.contact-form-area .subtitle {
+  color: #ccd6f6;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Default bottom margin */
+}
+
+/* Clear margin for groups inside form-row */
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+/* Add margin back for subject/message which are not in form-row */
+.form-group:not(:last-child):not(:first-child):not(:nth-child(2)) {
+   margin-bottom: 20px;
+}
+
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  color: #8892b0;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #112240; /* Input background */
+  border: 1px solid #1f3354; /* Subtle border */
+  border-radius: 5px;
+  color: #ffffff; /* Input text color */
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+  color: #8892b0; /* Placeholder text color */
+  opacity: 0.7;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #00aaff; /* Highlight border on focus */
+}
+
+.form-group textarea {
+  resize: vertical; /* Allow vertical resize */
+  min-height: 120px;
+}
+
+.btn-send {
+  background-color: #007bff; /* Bright blue button */
+  color: #ffffff;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 30px; /* Pill shape */
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block; /* Fit content */
+  margin-top: 10px;
+}
+
+.btn-send:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px);
+}
+
+/* --- Responsiveness --- */
+
+/* Tablets and Smaller Desktops */
+@media (max-width: 992px) {
+  .contact-grid {
+      grid-template-columns: 1fr; /* Stack columns */
+      gap: 50px;
+  }
+
+  .contact-info {
+     align-items: center; /* Center align image and info blocks */
+     text-align: center;
+  }
+
+   .info-details {
+      padding-left: 0; /* Remove indent */
+      width: 100%;
+      max-width: 400px; /* Limit width */
+  }
+
+  .social-icons {
+      justify-content: center; /* Center icons */
+  }
+
+  .contact-form-area h2 {
+      font-size: 2rem;
+  }
+  .contact-form-area .subtitle {
+      font-size: 1rem;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+   .contact-section {
+      padding: 40px 0;
+  }
+
+  .form-row {
+      grid-template-columns: 1fr; /* Stack Name and Email fields */
+      gap: 20px; /* Add gap back when stacked */
+      margin-bottom: 0; /* Remove bottom margin as individual groups have it */
+  }
+
+  .form-group {
+      margin-bottom: 20px; /* Ensure consistent spacing */
+  }
+
+   .contact-form-area h2 {
+      font-size: 1.8rem;
+  }
+
+   .info-value {
+      font-size: 1rem;
+  }
+
+  .btn-send {
+      width: 100%; /* Make button full width */
+      padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+      padding: 0 15px;
+  }
+  .image-container {
+       padding: 10px;
+  }
+   .info-label {
+      font-size: 0.7rem;
+  }
+  .info-value {
+      font-size: 0.9rem;
+  }
+   .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+      padding: 10px 12px;
+      font-size: 0.9rem;
+  }
+  .btn-send {
+      font-size: 0.9rem;
+  }
+}
